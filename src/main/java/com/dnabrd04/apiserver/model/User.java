@@ -2,6 +2,8 @@ package com.dnabrd04.apiserver.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 /**
  * This class will be used to pass data from the "User" table to objects.
  * This class will store the id, the image, the username, the privacy,
@@ -33,6 +35,9 @@ public class User {
 
     @Column
     private String description;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
 
     /**
      * Empty constructor required for hibernate
@@ -113,5 +118,13 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

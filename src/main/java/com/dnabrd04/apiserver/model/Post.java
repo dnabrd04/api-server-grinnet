@@ -3,6 +3,7 @@ package com.dnabrd04.apiserver.model;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.List;
 
 /**
  * This class will be used to pass data from the "Post" table to objects.
@@ -25,7 +26,7 @@ public class Post {
 
     // Post that be related with this post if it has
     @ManyToOne
-    @JoinColumn(name = "id_user", foreignKey = @ForeignKey(name = "FK_POST_USER"))
+    @JoinColumn(name = "id_post", foreignKey = @ForeignKey(name = "FK_POST_POST"))
     private Post post;
 
     @Column
@@ -36,6 +37,9 @@ public class Post {
 
     @Column
     private Date creation_date;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
     /**
      * Empty constructor required for hibernate
