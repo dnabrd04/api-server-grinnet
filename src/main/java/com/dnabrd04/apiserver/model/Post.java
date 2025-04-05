@@ -2,8 +2,12 @@ package com.dnabrd04.apiserver.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
+
 /**
  * This class will be used to pass data from the "Post" table to objects.
+ * This class will store the id, the user, the related publication,
+ * the privacy, the text and the creation date.
  *
  * @author dnabrd04
  */
@@ -31,7 +35,7 @@ public class Post {
     private String text;
 
     @Column
-    private String creation_date;
+    private Date creation_date;
 
     /**
      * Empty constructor required for hibernate
@@ -39,7 +43,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long id_post, User user, Post post, String privacity, String text, String creation_date) {
+    public Post(Long id_post, User user, Post post, String privacity, String text, Date creation_date) {
         this.id_post = id_post;
         this.user = user;
         this.post = post;
@@ -48,7 +52,7 @@ public class Post {
         this.creation_date = creation_date;
     }
 
-    public Post(User user, Post post, String privacity, String text, String creation_date) {
+    public Post(User user, Post post, String privacity, String text, Date creation_date) {
         this.user = user;
         this.post = post;
         this.privacity = privacity;
@@ -96,11 +100,11 @@ public class Post {
         this.text = text;
     }
 
-    public String getCreation_date() {
+    public Date getCreation_date() {
         return creation_date;
     }
 
-    public void setCreation_date(String creation_date) {
+    public void setCreation_date(Date creation_date) {
         this.creation_date = creation_date;
     }
 }

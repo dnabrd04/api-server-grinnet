@@ -1,11 +1,10 @@
 package com.dnabrd04.apiserver.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 /**
- * This class will be used to pass data from the "Post" table to objects.
+ * This class will be used to pass data from the "Tag" table to objects.
+ * This class will store the id, and the text.
  *
  * @author dnabrd04
  */
@@ -13,6 +12,7 @@ import jakarta.persistence.Id;
 public class Tag {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_tag;
 
     @Column

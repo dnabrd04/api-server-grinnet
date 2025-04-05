@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 /**
  * This class will be used to pass data from the "User" table to objects.
+ * This class will store the id, the image, the username, the privacy,
+ * the firebase id, the name and the description.
  *
  * @author dnabrd04
  */
