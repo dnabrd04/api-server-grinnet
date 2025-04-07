@@ -7,6 +7,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * This class will be used to do all the database operations of the User class.
+ *
+ * @author dnabrd04
+ */
 @Service
 public class UserService {
 
