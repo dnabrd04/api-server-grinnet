@@ -5,6 +5,8 @@ import com.dnabrd04.apiserver.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -29,5 +31,31 @@ public class UserService {
      */
     public User getUser(Long id) {
         return userRepository.getReferenceById(id);
+    }
+
+    /**
+     * Gets all the Users
+     *
+     * @return the user with match the id on the database.
+     */
+    public List<User> getUsers() {
+        return userRepository.findAll();
+    }
+
+    /**
+     * Receives an id and delete the user with this id.
+     */
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    /**
+     * Receives an id and delete the user with this id.
+     *
+     * @param user to update
+     * @return the user's new values
+     */
+    public User updateUser(User user) {
+        return userRepository.save(user);
     }
 }
