@@ -9,6 +9,7 @@ import jakarta.persistence.*;
  * @author dnabrd04
  */
 @Entity
+@Table(name = "likes")//This is necessary because “like” is a reserved word.
 public class Like {
 
     @Id

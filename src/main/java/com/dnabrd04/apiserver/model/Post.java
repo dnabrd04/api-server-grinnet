@@ -26,7 +26,7 @@ public class Post {
 
     // Post that be related with this post if it has
     @ManyToOne
-    @JoinColumn(name = "id_post", foreignKey = @ForeignKey(name = "FK_POST_POST"))
+    @JoinColumn(name = "post_related", foreignKey = @ForeignKey(name = "FK_POST_POST"))
     private Post post;
 
     @Column

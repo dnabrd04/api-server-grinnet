@@ -12,6 +12,7 @@ import java.util.List;
  * @author dnabrd04
  */
 @Entity
+@Table(name = "users")//This is necessary because “user” is a reserved word.
 public class User {
 
     @Id

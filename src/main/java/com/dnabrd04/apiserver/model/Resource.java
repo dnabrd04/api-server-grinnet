@@ -24,7 +24,7 @@ public class Resource {
     private Post post;
 
     // The order in which the resources will be displayed. Useful when there are several resources
-    @Column
+    @Column(name = "resource_order")//This is necessary because “order” is a reserved word.
     private int order;
 
     public Resource() {
