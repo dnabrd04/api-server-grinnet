@@ -1,8 +1,9 @@
 package com.dnabrd04.apiserver.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +36,8 @@ public class Post {
     @Column
     private String text;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
     @Column
     private Date creation_date;
 

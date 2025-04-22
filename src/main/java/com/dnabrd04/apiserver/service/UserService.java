@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * This class will be used to do all the database operations of the User class.
@@ -36,6 +37,16 @@ public class UserService {
      */
     public User getUser(Long id) {
         return userRepository.getReferenceById(id);
+    }
+
+    /**
+     * Receives a firebase id gets the User with this id if exists.
+     *
+     * @param firebaseId to search on the database
+     * @return the user with match the id on the database.
+     */
+    public Optional<User> getUserByFirebaseId(String firebaseId) {
+        return userRepository.findByFirebaseId(firebaseId);
     }
 
     /**

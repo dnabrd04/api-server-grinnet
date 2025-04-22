@@ -28,8 +28,8 @@ public class User {
     @Column
     private String privacity;
 
-    @Column
-    private String firebase_id;
+    @Column(name = "firebase_id")
+    private String firebaseId;
 
     @Column
     private String name;
@@ -41,6 +41,9 @@ public class User {
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+
+    @OneToMany(mappedBy = "user")
     private List<Like> likes;
 
     /**
@@ -49,21 +52,21 @@ public class User {
     public User() {
     }
 
-    public User(Long id_user, String image, String username, String privacity, String firebase_id, String name, String description) {
+    public User(Long id_user, String image, String username, String privacity, String firebaseId, String name, String description) {
         this.id_user = id_user;
         this.image = image;
         this.username = username;
         this.privacity = privacity;
-        this.firebase_id = firebase_id;
+        this.firebaseId = firebaseId;
         this.name = name;
         this.description = description;
     }
 
-    public User(String image, String username, String privacity, String firebase_id, String name, String description) {
+    public User(String image, String username, String privacity, String firebaseId, String name, String description) {
         this.image = image;
         this.username = username;
         this.privacity = privacity;
-        this.firebase_id = firebase_id;
+        this.firebaseId = firebaseId;
         this.name = name;
         this.description = description;
     }
@@ -100,12 +103,12 @@ public class User {
         this.privacity = privacity;
     }
 
-    public String getFirebase_id() {
-        return firebase_id;
+    public String getFirebaseId() {
+        return firebaseId;
     }
 
-    public void setFirebase_id(String firebase_id) {
-        this.firebase_id = firebase_id;
+    public void setFirebaseId(String firebaseId) {
+        this.firebaseId = firebaseId;
     }
 
     public String getName() {
