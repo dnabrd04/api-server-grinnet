@@ -26,7 +26,7 @@ public class LikeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long userId, @PathVariable Long postId) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Long userId, @RequestParam Long postId) {
         likeService.deleteLike(userId, postId);
         return ResponseEntity.noContent().build();
     }

@@ -1,7 +1,6 @@
 package com.dnabrd04.apiserver.service;
 
 import com.dnabrd04.apiserver.model.Like;
-import com.dnabrd04.apiserver.model.User;
 import com.dnabrd04.apiserver.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +38,6 @@ public class LikeService {
      * Receives an id user and an id post and delete the like.
      */
     public void deleteLike(Long userId, Long postId) {
-        likeRepository.deleteByUserIdAndPostId(userId, postId);
+        likeRepository.deleteByUserIdAndPost(userId, postId);
     }
 }
