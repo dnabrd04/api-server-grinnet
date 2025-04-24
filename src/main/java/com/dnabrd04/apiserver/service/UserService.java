@@ -74,4 +74,14 @@ public class UserService {
     public User updateUser(User user) {
         return userRepository.save(user);
     }
+
+    /**
+     * Receives a list withs ids and get the users that match with the id.
+     *
+     * @param ids is the list of users.
+     * @return the list of users that match with the values.
+     */
+    public List<User> findById_userIn(List<Long> ids) {
+        return userRepository.findById_userIn(ids);
+    }
 }

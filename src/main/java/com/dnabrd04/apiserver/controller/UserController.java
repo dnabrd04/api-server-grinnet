@@ -25,6 +25,12 @@ public class UserController {
         return ResponseEntity.ok(userService.getUser(id));
     }
 
+    @PostMapping("/search")
+    public ResponseEntity<List<User>> getUser(@RequestBody List<Long> ids) {
+        return ResponseEntity.ok(userService.findById_userIn(ids));
+    }
+
+
     @GetMapping("/firebase/{firebaseId}")
     public ResponseEntity<User> getUserByFirebaseId(@PathVariable String firebaseId) {
         return userService.getUserByFirebaseId(firebaseId)
