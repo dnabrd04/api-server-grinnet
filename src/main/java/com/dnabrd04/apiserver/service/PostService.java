@@ -1,5 +1,6 @@
 package com.dnabrd04.apiserver.service;
 
+import com.dnabrd04.apiserver.dto.PostDTO;
 import com.dnabrd04.apiserver.model.Post;
 import com.dnabrd04.apiserver.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,18 @@ public class PostService {
      *
      * @return a list with all the posts.
      */
-    public List<Post> getPosts() {
-        return postRepository.findAll();
+    public List<PostDTO> getPosts() {
+        return postRepository.findAllPosts();
+    }
+
+    /**
+     * Get on post by the id.
+     *
+     * @param id required to search the post.
+     * @return the post.
+     */
+    public PostDTO getPostDTO(Long id) {
+        return postRepository.findPostById(id);
     }
 
     /**
@@ -43,7 +54,7 @@ public class PostService {
      * @param id required to search the post.
      * @return the post.
      */
-    public List<Post> getPostsByUser(Long id) {
+    public List<PostDTO> getPostsByUser(Long id) {
         return postRepository.findByUser(id);
     }
 

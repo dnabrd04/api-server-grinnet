@@ -1,6 +1,7 @@
 package com.dnabrd04.apiserver.controller;
 
 
+import com.dnabrd04.apiserver.dto.PostDTO;
 import com.dnabrd04.apiserver.model.Post;
 import com.dnabrd04.apiserver.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +18,17 @@ public class PostController {
     private PostService postService;
 
     @GetMapping
-    public List<Post> getPosts() {
+    public List<PostDTO> getPosts() {
         return postService.getPosts();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPost(@PathVariable Long id) {
-        return ResponseEntity.ok(postService.getPost(id));
+    public ResponseEntity<PostDTO> getPost(@PathVariable Long id) {
+        return ResponseEntity.ok(postService.getPostDTO(id));
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<List<Post>> getPostsByUser(@PathVariable Long id) {
+    public ResponseEntity<List<PostDTO>> getPostsByUser(@PathVariable Long id) {
         return ResponseEntity.ok(postService.getPostsByUser(id));
     }
 
