@@ -20,30 +20,35 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_post;
 
-    // User that publicate this post
+    // User that publicate this post.
     @ManyToOne
     @JoinColumn(name = "id_user", foreignKey = @ForeignKey(name = "FK_POST_USER"), nullable = false)
     private User user;
 
-    // Post that be related with this post if it has
+    // Post that be related with this post if it has.
     @ManyToOne
     @JoinColumn(name = "post_related", foreignKey = @ForeignKey(name = "FK_POST_POST"))
     private Post post;
 
+    // The privacity of the post.
     @Column
     private String privacity;
 
+    // The content of the publication.
     @Column
     private String text;
 
+    // Creation date of the post.
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
     @Column
     private Date creation_date;
 
+    // Comments related with this post.
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
+    // Likes related with this post.
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Like> likes;
 

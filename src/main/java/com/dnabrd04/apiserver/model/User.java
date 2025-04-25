@@ -19,30 +19,39 @@ public class User {
     @GeneratedValue( strategy = GenerationType.AUTO )
     private Long id_user;
 
+    // Image of the user
     @Column
     private String image;
 
+    // Username of the user
     @Column
     private String username;
 
+    // Privacity of the user
     @Column
     private String privacity;
 
+    // The firebase id related with this user
     @Column(name = "firebase_id")
     private String firebaseId;
 
+    // The name of the user
     @Column
     private String name;
 
+    // A short description of the user.
     @Column
     private String description;
 
+    // The comments related that have been maked by this user
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
 
+    // The posts related that have been maked by this user
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
+    // The likes related that have been maked by this user
     @OneToMany(mappedBy = "user")
     private List<Like> likes;
 
