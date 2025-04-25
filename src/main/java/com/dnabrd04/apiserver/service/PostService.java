@@ -38,6 +38,16 @@ public class PostService {
     }
 
     /**
+     * Get a list with all the posts of an user.
+     *
+     * @param id required to search the post.
+     * @return the post.
+     */
+    public List<Post> getPostsByUser(Long id) {
+        return postRepository.findByUser(id);
+    }
+
+    /**
      * Create the post with all the information.
      *
      * @param post that will be created.
