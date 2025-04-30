@@ -81,7 +81,7 @@ public class UserService {
      * @param ids is the list of users.
      * @return the list of users that match with the values.
      */
-    public List<User> findById_userIn(List<Long> ids) {
-        return userRepository.findById_userIn(ids);
-    }
+//    public List<User> findById_userIn(List<Long> ids) {
+//        return userRepository.findById_userIn(ids);
+//    }
 }

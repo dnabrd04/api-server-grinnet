@@ -55,7 +55,7 @@ public class PostService {
      * @return the post.
      */
     public List<PostDTO> getPostsByUser(Long id) {
-        return postRepository.findByUser(id);
+        return postRepository.findByUserId(id);
     }
 
     /**

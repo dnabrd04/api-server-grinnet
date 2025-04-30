@@ -12,11 +12,11 @@ import java.util.List;
 
 @Repository
 public interface ResourceRepository extends JpaRepository<Resource, Long> {
-    @Query("SELECT r.* FROM resource r WHERE r.id_post = :idPost")
+    @Query("SELECT r FROM Resource r WHERE r.post = :idPost")
     List<Resource> getResourcesByPost(@Param("idPost") Long id);
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM resource r WHERE r.id_resource = :idResource")
+    @Query("DELETE FROM Resource r WHERE r.id_resource = :idResource")
     void deleteByPostId(@Param("idResource") Long id);
 }

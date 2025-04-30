@@ -14,13 +14,13 @@ public class PostDTO {
 
     private Date creationDate;
 
-    private int likeCount;
+    private Long likeCount;
 
-    private int commentCount;
+    private Long commentCount;
 
     private User user;
 
-    public PostDTO(Long idPost, String text, String privacity, Date creationDate, User user, int likeCount, int commentCount) {
+    public PostDTO(Long idPost, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount) {
         this.idPost = idPost;
         this.text = text;
         this.privacity = privacity;
@@ -62,19 +62,19 @@ public class PostDTO {
         this.creationDate = creationDate;
     }
 
-    public int getLikeCount() {
+    public Long getLikeCount() {
         return likeCount;
     }
 
-    public void setLikeCount(int likeCount) {
+    public void setLikeCount(Long likeCount) {
         this.likeCount = likeCount;
     }
 
-    public int getCommentCount() {
+    public Long getCommentCount() {
         return commentCount;
     }
 
-    public void setCommentCount(int commentCount) {
+    public void setCommentCount(Long commentCount) {
         this.commentCount = commentCount;
     }
 
