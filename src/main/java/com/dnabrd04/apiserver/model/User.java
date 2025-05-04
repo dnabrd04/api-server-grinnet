@@ -143,4 +143,20 @@ public class User {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id_user=" + id_user +
+                ", image='" + image + '\'' +
+                ", username='" + username + '\'' +
+                ", privacity='" + privacity + '\'' +
+                ", firebaseId='" + firebaseId + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", comments=" + comments +
+                ", posts=" + posts +
+                ", likes=" + likes +
+                '}';
+    }
 }

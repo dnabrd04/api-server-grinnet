@@ -18,8 +18,8 @@ public class PostController {
     private PostService postService;
 
     @GetMapping
-    public List<PostDTO> getPosts() {
-        return postService.getPosts();
+    public ResponseEntity<List<PostDTO>> getPosts() {
+        return ResponseEntity.ok(postService.getPosts());
     }
 
     @GetMapping("/{id}")

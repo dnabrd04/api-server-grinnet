@@ -1,12 +1,15 @@
 package com.dnabrd04.apiserver.dto;
 
+import com.dnabrd04.apiserver.model.Post;
 import com.dnabrd04.apiserver.model.User;
 
 import java.util.Date;
 
 public class PostDTO {
 
-    private Long idPost;
+    private Long id_post;
+
+    private Post postRelated;
 
     private String text;
 
@@ -20,8 +23,19 @@ public class PostDTO {
 
     private User user;
 
-    public PostDTO(Long idPost, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount) {
-        this.idPost = idPost;
+    public PostDTO(Long id_post, Post postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount) {
+        this.id_post = id_post;
+        this.postRelated = postRelated;
+        this.text = text;
+        this.privacity = privacity;
+        this.creationDate = creationDate;
+        this.user = user;
+        this.likeCount = likeCount;
+        this.commentCount = commentCount;
+    }
+
+    public PostDTO(Post postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount) {
+        this.postRelated = postRelated;
         this.text = text;
         this.privacity = privacity;
         this.creationDate = creationDate;
@@ -31,11 +45,19 @@ public class PostDTO {
     }
 
     public Long getIdPost() {
-        return idPost;
+        return id_post;
     }
 
-    public void setIdPost(Long idPost) {
-        this.idPost = idPost;
+    public void setIdPost(Long id_post) {
+        this.id_post = id_post;
+    }
+
+    public Post getPostRelated() {
+        return postRelated;
+    }
+
+    public void setPostRelated(Post postRelated) {
+        this.postRelated = postRelated;
     }
 
     public String getText() {

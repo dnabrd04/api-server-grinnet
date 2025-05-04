@@ -122,4 +122,18 @@ public class Post {
     public void setCreation_date(Date creation_date) {
         this.creation_date = creation_date;
     }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id_post=" + id_post +
+                ", user=" + user +
+                ", post=" + post +
+                ", privacity='" + privacity + '\'' +
+                ", text='" + text + '\'' +
+                ", creation_date=" + creation_date +
+                ", comments=" + comments +
+                ", likes=" + likes +
+                '}';
+    }
 }

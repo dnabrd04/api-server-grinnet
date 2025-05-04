@@ -16,12 +16,14 @@ import java.util.Objects;
 public class Like {
 
     @EmbeddedId
-    private LikeId id;
+    private LikeId id = new LikeId();
 
+    @MapsId("user_pk")
     @ManyToOne
     @JoinColumn(name = "id_user", foreignKey = @ForeignKey(name = "FK_LIKE_USER"), nullable = false)
     private User user;
 
+    @MapsId("post_pk")
     @ManyToOne
     @JoinColumn(name = "id_post", foreignKey = @ForeignKey(name = "FK_LIKE_POST"), nullable = false)
     private Post post;
