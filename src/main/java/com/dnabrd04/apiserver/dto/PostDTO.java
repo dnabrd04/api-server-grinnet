@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class PostDTO {
 
-    private Long id_post;
+    private Long idPost;
 
     private Post postRelated;
 
@@ -23,8 +23,8 @@ public class PostDTO {
 
     private User user;
 
-    public PostDTO(Long id_post, Post postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount) {
-        this.id_post = id_post;
+    public PostDTO(Long idPost, Post postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount) {
+        this.idPost = idPost;
         this.postRelated = postRelated;
         this.text = text;
         this.privacity = privacity;
@@ -45,11 +45,11 @@ public class PostDTO {
     }
 
     public Long getIdPost() {
-        return id_post;
+        return idPost;
     }
 
     public void setIdPost(Long id_post) {
-        this.id_post = id_post;
+        this.idPost = id_post;
     }
 
     public Post getPostRelated() {

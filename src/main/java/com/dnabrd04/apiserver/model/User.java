@@ -17,7 +17,7 @@ public class User {
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO )
-    private Long id_user;
+    private Long idUser;
 
     // Image of the user
     @Column
@@ -61,8 +61,8 @@ public class User {
     public User() {
     }
 
-    public User(Long id_user, String image, String username, String privacity, String firebaseId, String name, String description) {
-        this.id_user = id_user;
+    public User(Long idUser, String image, String username, String privacity, String firebaseId, String name, String description) {
+        this.idUser = idUser;
         this.image = image;
         this.username = username;
         this.privacity = privacity;
@@ -80,12 +80,12 @@ public class User {
         this.description = description;
     }
 
-    public Long getId_user() {
-        return id_user;
+    public Long getIdUser() {
+        return idUser;
     }
 
-    public void setId_user(Long id_user) {
-        this.id_user = id_user;
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
     public String getImage() {
@@ -147,7 +147,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id_user=" + id_user +
+                "id_user=" + idUser +
                 ", image='" + image + '\'' +
                 ", username='" + username + '\'' +
                 ", privacity='" + privacity + '\'' +

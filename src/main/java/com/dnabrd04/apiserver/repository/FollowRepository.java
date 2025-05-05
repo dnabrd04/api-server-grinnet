@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface FollowRepository extends JpaRepository<Follow, Long> {
-    @Query("Select f FROM Follow f WHERE f.followed.id_user = :idUser")
+    @Query("Select f FROM Follow f WHERE f.followed.idUser = :idUser")
     List<Follow> getFollowersByIdUser(@Param("idUser") Long id);
 }

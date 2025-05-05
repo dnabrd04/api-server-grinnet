@@ -18,12 +18,12 @@ public class Like {
     @EmbeddedId
     private LikeId id = new LikeId();
 
-    @MapsId("user_pk")
+    @MapsId("userPk")
     @ManyToOne
     @JoinColumn(name = "id_user", foreignKey = @ForeignKey(name = "FK_LIKE_USER"), nullable = false)
     private User user;
 
-    @MapsId("post_pk")
+    @MapsId("postPk")
     @ManyToOne
     @JoinColumn(name = "id_post", foreignKey = @ForeignKey(name = "FK_LIKE_POST"), nullable = false)
     private Post post;
@@ -31,7 +31,8 @@ public class Like {
     public Like() {
     }
 
-    public Like(Long id_like, User user, Post post) {
+    public Like(LikeId id, User user, Post post) {
+        this.id = id;
         this.user = user;
         this.post = post;
     }
@@ -56,51 +57,12 @@ public class Like {
     public void setPost(Post post) {
         this.post = post;
     }
-}
 
-@Embeddable
-class LikeId implements Serializable {
-    private Long user_pk;
-    private Long post_pk;
-
-    public LikeId() {
+    public LikeId getId() {
+        return id;
     }
 
-    public LikeId(Long user, Long post) {
-        this.user_pk = user;
-        this.post_pk = post;
-    }
-
-    public Long getUser() {
-        return user_pk;
-    }
-
-    public void setUser(Long user) {
-        this.user_pk = user;
-    }
-
-    public Long getPost() {
-        return post_pk;
-    }
-
-    public void setPost(Long post) {
-        this.post_pk = post;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        LikeId likeId = (LikeId) o;
-        return Objects.equals(user_pk, likeId.user_pk) && Objects.equals(post_pk, likeId.post_pk);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(user_pk, post_pk);
+    public void setId(LikeId id) {
+        this.id = id;
     }
 }

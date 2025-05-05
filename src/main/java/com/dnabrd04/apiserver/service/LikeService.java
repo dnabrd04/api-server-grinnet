@@ -1,6 +1,7 @@
 package com.dnabrd04.apiserver.service;
 
 import com.dnabrd04.apiserver.model.Like;
+import com.dnabrd04.apiserver.model.LikeId;
 import com.dnabrd04.apiserver.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class LikeService {
      * @return the user added on the database.
      */
     public Like createLike(Like like) {
+        like.setId(new LikeId(like.getUser().getIdUser(), like.getPost().getIdPost()));
+
         return likeRepository.save(like);
     }
 

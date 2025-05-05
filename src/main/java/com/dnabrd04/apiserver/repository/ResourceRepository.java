@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public interface ResourceRepository extends JpaRepository<Resource, Long> {
-    @Query("SELECT r FROM Resource r WHERE r.post = :idPost")
+    @Query("SELECT r FROM Resource r WHERE r.post.idPost = :idPost")
     List<Resource> getResourcesByPost(@Param("idPost") Long id);
 
     @Modifying

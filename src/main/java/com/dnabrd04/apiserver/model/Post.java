@@ -18,7 +18,7 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_post;
+    private Long idPost;
 
     // User that publicate this post.
     @ManyToOne
@@ -58,8 +58,8 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long id_post, User user, Post post, String privacity, String text, Date creation_date) {
-        this.id_post = id_post;
+    public Post(Long idPost, User user, Post post, String privacity, String text, Date creation_date) {
+        this.idPost = idPost;
         this.user = user;
         this.post = post;
         this.privacity = privacity;
@@ -75,12 +75,12 @@ public class Post {
         this.creation_date = creation_date;
     }
 
-    public Long getId_post() {
-        return id_post;
+    public Long getIdPost() {
+        return idPost;
     }
 
-    public void setId_post(Long id_post) {
-        this.id_post = id_post;
+    public void setIdPost(Long idPost) {
+        this.idPost = idPost;
     }
 
     public User getUser() {
@@ -126,7 +126,7 @@ public class Post {
     @Override
     public String toString() {
         return "Post{" +
-                "id_post=" + id_post +
+                "id_post=" + idPost +
                 ", user=" + user +
                 ", post=" + post +
                 ", privacity='" + privacity + '\'' +
