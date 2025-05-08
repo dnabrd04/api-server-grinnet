@@ -1,5 +1,6 @@
 package com.dnabrd04.apiserver.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
@@ -7,7 +8,11 @@ import java.util.Objects;
 
 @Embeddable
 public class LikeId implements Serializable {
+
+    @Column(name = "id_user")
     private Long userPk;
+
+    @Column(name = "id_post")
     private Long postPk;
 
     public LikeId() {
