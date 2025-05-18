@@ -24,8 +24,8 @@ public class PostService {
      *
      * @return a list with all the posts.
      */
-    public List<PostDTO> getPosts() {
-        return postRepository.findAllPosts();
+    public List<PostDTO> getPosts(String currentUser) {
+        return postRepository.findAllPostsWithLikeStatus(currentUser);
     }
 
     /**
@@ -34,8 +34,8 @@ public class PostService {
      * @param id required to search the post.
      * @return the post.
      */
-    public PostDTO getPostDTO(Long id) {
-        return postRepository.findPostById(id);
+    public PostDTO getPostDTO(Long id, String currentUser) {
+        return postRepository.findPostByIdWithLikeStatus(id, currentUser);
     }
 
     /**
@@ -54,8 +54,8 @@ public class PostService {
      * @param id required to search the post.
      * @return the post.
      */
-    public List<PostDTO> getPostsByUser(Long id) {
-        return postRepository.findByUserId(id);
+    public List<PostDTO> getPostsByUser(Long id, String currentUser) {
+        return postRepository.findByUserIdWithLikeStatus(id, currentUser);
     }
 
     /**

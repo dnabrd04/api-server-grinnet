@@ -2,8 +2,10 @@ package com.dnabrd04.apiserver.controller;
 
 
 import com.dnabrd04.apiserver.dto.PostDTO;
+import com.dnabrd04.apiserver.dto.UserIdRequest;
 import com.dnabrd04.apiserver.model.Post;
 import com.dnabrd04.apiserver.service.PostService;
+import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,20 +19,24 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @GetMapping
-    public ResponseEntity<List<PostDTO>> getPosts() {
-        return ResponseEntity.ok(postService.getPosts());
+    @PostMapping("/with-likes")
+    public ResponseEntity<List<PostDTO>> getPosts(@RequestBody UserIdRequest request) {
+        if (request.getFirebaseUserId() == null || request.getFirebaseUserId().trim().isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(postService.getPosts(request.getFirebaseUserId()));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PostDTO> getPost(@PathVariable Long id) {
-        return ResponseEntity.ok(postService.getPostDTO(id));
-    }
-
-    @GetMapping("/user/{id}")
-    public ResponseEntity<List<PostDTO>> getPostsByUser(@PathVariable Long id) {
-        return ResponseEntity.ok(postService.getPostsByUser(id));
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<PostDTO> getPost(@PathVariable Long id) {
+//        return ResponseEntity.ok(postService.getPostDTO(id));
+//    }
+//
+//    @GetMapping("/user/{id}")
+//    public ResponseEntity<List<PostDTO>> getPostsByUser(@PathVariable Long id) {
+//        return ResponseEntity.ok(postService.getPostsByUser(id));
+//    }
 
 
     @PostMapping

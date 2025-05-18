@@ -19,11 +19,14 @@ public class PostDTO {
 
     private Long likeCount;
 
+    private boolean isLiked;
+
     private Long commentCount;
 
     private User user;
 
-    public PostDTO(Long idPost, Post postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount) {
+
+    public PostDTO(Long idPost, Post postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount, boolean isLiked) {
         this.idPost = idPost;
         this.postRelated = postRelated;
         this.text = text;
@@ -32,9 +35,10 @@ public class PostDTO {
         this.user = user;
         this.likeCount = likeCount;
         this.commentCount = commentCount;
+        this.isLiked = isLiked;
     }
 
-    public PostDTO(Post postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount) {
+    public PostDTO(Post postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount, boolean isLiked) {
         this.postRelated = postRelated;
         this.text = text;
         this.privacity = privacity;
@@ -42,6 +46,7 @@ public class PostDTO {
         this.user = user;
         this.likeCount = likeCount;
         this.commentCount = commentCount;
+        this.isLiked = isLiked;
     }
 
     public Long getIdPost() {
@@ -106,5 +111,13 @@ public class PostDTO {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isLiked() {
+        return isLiked;
+    }
+
+    public void setLiked(boolean liked) {
+        isLiked = liked;
     }
 }
