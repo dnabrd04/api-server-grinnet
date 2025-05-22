@@ -52,6 +52,10 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Like> likes;
 
+    // Likes related with this post.
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<Resource> resources;
+
     /**
      * Empty constructor required for hibernate
      */
