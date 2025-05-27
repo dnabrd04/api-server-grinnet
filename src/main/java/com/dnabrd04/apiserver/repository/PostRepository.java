@@ -11,22 +11,24 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-    @Query("""
+    /*@Query("""
             SELECT new com.dnabrd04.apiserver.dto.PostDTO(p.idPost, pr, p.text, p.privacity, p.creation_date, u, COUNT(l.post.idPost), COUNT(c),
-                (SELECT COUNT(ul) > 0 FROM Like ul WHERE ul.post.idPost = p.idPost AND ul.user.firebaseId = :firebaseUserId)
+                (SELECT COUNT(ul) > 0 FROM Like ul WHERE ul.post.idPost = p.idPost AND ul.user.firebaseId = :firebaseUserId),
+                r
             )
             FROM Post p
             LEFT JOIN p.likes l
             LEFT JOIN p.comments c
             LEFT JOIN p.user u
             LEFT JOIN p.post pr
+            LEFT JOIN p.resources r
             WHERE u.idUser = :idUser
-            GROUP BY p.idPost, u, p.text, p.privacity, p.creation_date
+            GROUP BY p.idPost, u, p.text, p.privacity, p.creation_date, r
             """)
-    List<PostDTO> findByUserIdWithLikeStatus(@Param("idUser") Long idUser, @Param("firebaseUserId") String currentUser);
+    List<PostDTO> findByUserIdWithLikeStatus(@Param("idUser") Long idUser, @Param("firebaseUserId") String currentUser);*/
 
     @Query("""
-            SELECT new com.dnabrd04.apiserver.dto.PostDTO(p.idPost, pr, p.text, p.privacity, p.creation_date, u, COUNT(l.post.idPost), COUNT(c),
+            SELECT new com.dnabrd04.apiserver.dto.PostDTO(p, pr,
                 (SELECT COUNT(ul) > 0 FROM Like ul WHERE ul.post.idPost = p.idPost AND ul.user.firebaseId = :firebaseUserId)
             )
             FROM Post p
@@ -34,21 +36,24 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             LEFT JOIN p.comments c
             LEFT JOIN p.user u
             LEFT JOIN p.post pr
-            GROUP BY p.idPost, u, p.post, p.text, p.privacity, p.creation_date
+            LEFT JOIN p.resources r
+            GROUP BY p.idPost, u, p.post, p.text, p.privacity, p.creation_date, r
             """)
     List<PostDTO> findAllPostsWithLikeStatus(@Param("firebaseUserId") String currentUser);
 
-    @Query("""
+    /*@Query("""
             SELECT new com.dnabrd04.apiserver.dto.PostDTO(p.idPost, pr, p.text, p.privacity, p.creation_date, u, COUNT(l.post.idPost), COUNT(c),
-                (SELECT COUNT(ul) > 0 FROM Like ul WHERE ul.post.idPost = p.idPost AND ul.user.firebaseId = :firebaseUserId)
+                (SELECT COUNT(ul) > 0 FROM Like ul WHERE ul.post.idPost = p.idPost AND ul.user.firebaseId = :firebaseUserId),
+                r
             )
             FROM Post p
             LEFT JOIN p.likes l
             LEFT JOIN p.comments c
             LEFT JOIN p.user u
             LEFT JOIN p.post pr
+            LEFT JOIN p.resources r
             WHERE p.idPost = :idPost
-            GROUP BY p.idPost
+            GROUP BY p.idPost, r
             """)
-    PostDTO findPostByIdWithLikeStatus(@Param("idPost") Long id, @Param("firebaseUserId") String currentUser);
+    PostDTO findPostByIdWithLikeStatus(@Param("idPost") Long id, @Param("firebaseUserId") String currentUser);*/
 }

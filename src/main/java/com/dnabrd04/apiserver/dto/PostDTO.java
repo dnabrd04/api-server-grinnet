@@ -1,15 +1,17 @@
 package com.dnabrd04.apiserver.dto;
 
 import com.dnabrd04.apiserver.model.Post;
+import com.dnabrd04.apiserver.model.Resource;
 import com.dnabrd04.apiserver.model.User;
 
 import java.util.Date;
+import java.util.List;
 
 public class PostDTO {
 
     private Long idPost;
 
-    private Post postRelated;
+    private PostDTO postRelated;
 
     private String text;
 
@@ -25,8 +27,30 @@ public class PostDTO {
 
     private User user;
 
+    private List<Resource> resources;
 
-    public PostDTO(Long idPost, Post postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount, boolean isLiked) {
+    public PostDTO(Post post, Post postRelated, boolean isLiked) {
+        this.idPost = post.getIdPost();
+        this.text = post.getText();
+        this.privacity = post.getPrivacity();
+        this.creationDate = post.getCreation_date();
+        this.user = post.getUser();
+        this.likeCount = (long) post.getLikes().size();
+        this.commentCount = (long) post.getComments().size();
+        this.isLiked = isLiked;
+        this.resources = post.getResources();
+
+        if (postRelated != null) {
+            this.postRelated = new PostDTO(postRelated.getIdPost(), postRelated.getText());
+        }
+    }
+
+    public PostDTO(Long idPost, String text) {
+        this.idPost = idPost;
+        this.text = text;
+    }
+
+    public PostDTO(Long idPost, PostDTO postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount, boolean isLiked, List<Resource> resources) {
         this.idPost = idPost;
         this.postRelated = postRelated;
         this.text = text;
@@ -36,9 +60,10 @@ public class PostDTO {
         this.likeCount = likeCount;
         this.commentCount = commentCount;
         this.isLiked = isLiked;
+        this.resources = resources;
     }
 
-    public PostDTO(Post postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount, boolean isLiked) {
+    public PostDTO(PostDTO postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount, boolean isLiked, List<Resource> resources) {
         this.postRelated = postRelated;
         this.text = text;
         this.privacity = privacity;
@@ -47,6 +72,7 @@ public class PostDTO {
         this.likeCount = likeCount;
         this.commentCount = commentCount;
         this.isLiked = isLiked;
+        this.resources = resources;
     }
 
     public Long getIdPost() {
@@ -57,11 +83,11 @@ public class PostDTO {
         this.idPost = id_post;
     }
 
-    public Post getPostRelated() {
+    public PostDTO getPostRelated() {
         return postRelated;
     }
 
-    public void setPostRelated(Post postRelated) {
+    public void setPostRelated(PostDTO postRelated) {
         this.postRelated = postRelated;
     }
 
@@ -119,5 +145,13 @@ public class PostDTO {
 
     public void setLiked(boolean liked) {
         isLiked = liked;
+    }
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
     }
 }

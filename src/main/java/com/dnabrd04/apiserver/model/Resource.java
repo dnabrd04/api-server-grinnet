@@ -1,5 +1,6 @@
 package com.dnabrd04.apiserver.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 /**
@@ -19,6 +20,7 @@ public class Resource {
     private String url;
 
     // Post the resource belongs to.
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(nullable = false, name = "id_post", foreignKey = @ForeignKey(name = "FK_IMAGE_POST"))
     private Post post;

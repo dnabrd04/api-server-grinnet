@@ -2,6 +2,7 @@ package com.dnabrd04.apiserver.service;
 
 import com.dnabrd04.apiserver.dto.PostDTO;
 import com.dnabrd04.apiserver.model.Post;
+import com.dnabrd04.apiserver.model.Resource;
 import com.dnabrd04.apiserver.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,9 +35,9 @@ public class PostService {
      * @param id required to search the post.
      * @return the post.
      */
-    public PostDTO getPostDTO(Long id, String currentUser) {
+    /*public PostDTO getPostDTO(Long id, String currentUser) {
         return postRepository.findPostByIdWithLikeStatus(id, currentUser);
-    }
+    }*/
 
     /**
      * Get on post by the id.
@@ -54,9 +55,9 @@ public class PostService {
      * @param id required to search the post.
      * @return the post.
      */
-    public List<PostDTO> getPostsByUser(Long id, String currentUser) {
+    /*public List<PostDTO> getPostsByUser(Long id, String currentUser) {
         return postRepository.findByUserIdWithLikeStatus(id, currentUser);
-    }
+    }*/
 
     /**
      * Create the post with all the information.
@@ -65,6 +66,9 @@ public class PostService {
      * @return the new post.
      */
     public Post createPost(Post post) {
+        for (Resource res : post.getResources()) {
+            res.setPost(post);
+        }
         return postRepository.save(post);
     }
 

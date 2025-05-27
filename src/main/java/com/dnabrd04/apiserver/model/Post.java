@@ -1,6 +1,7 @@
 package com.dnabrd04.apiserver.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -53,6 +54,7 @@ public class Post {
     private List<Like> likes;
 
     // Likes related with this post.
+    @JsonManagedReference
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Resource> resources;
 
@@ -62,21 +64,23 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long idPost, User user, Post post, String privacity, String text, Date creation_date) {
+    public Post(Long idPost, User user, Post post, String privacity, String text, Date creation_date, List<Resource> resources) {
         this.idPost = idPost;
         this.user = user;
         this.post = post;
         this.privacity = privacity;
         this.text = text;
         this.creation_date = creation_date;
+        this.resources = resources;
     }
 
-    public Post(User user, Post post, String privacity, String text, Date creation_date) {
+    public Post(User user, Post post, String privacity, String text, Date creation_date, List<Resource> resources) {
         this.user = user;
         this.post = post;
         this.privacity = privacity;
         this.text = text;
         this.creation_date = creation_date;
+        this.resources = resources;
     }
 
     public Long getIdPost() {
@@ -125,6 +129,30 @@ public class Post {
 
     public void setCreation_date(Date creation_date) {
         this.creation_date = creation_date;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public List<Like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Like> likes) {
+        this.likes = likes;
+    }
+
+    public List<Resource> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
     }
 
     @Override
