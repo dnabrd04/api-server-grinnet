@@ -84,4 +84,11 @@ public class UserService {
 //    public List<User> findById_userIn(List<Long> ids) {
 //        return userRepository.findById_userIn(ids);
 //    }
+
+    /**
+     *
+     */
+    public boolean existsUsername(String username) {
+        return userRepository.existsByUsername(username);
+    }
 }

@@ -20,6 +20,11 @@ public class UserController {
         return userService.getUsers();
     }
 
+    @GetMapping("/username/{username}")
+    public ResponseEntity<Boolean> existsUsername(@PathVariable String username) {
+        return ResponseEntity.ok(userService.existsUsername(username));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUser(id));
