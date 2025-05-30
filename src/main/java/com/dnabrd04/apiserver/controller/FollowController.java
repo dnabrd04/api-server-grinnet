@@ -20,9 +20,14 @@ public class FollowController {
         return ResponseEntity.ok(followService.createFollow(follow));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<Follow>> getFollowsByUser(@RequestParam Long id) {
-        return ResponseEntity.ok(followService.getFollowsByUser(id));
+    @GetMapping("/{id}/followers")
+    public ResponseEntity<Long> getFollowersByUser(@RequestParam Long id) {
+        return ResponseEntity.ok((long) followService.getFollowsByUser(id).size());
+    }
+
+    @GetMapping("/{id}/following")
+    public ResponseEntity<Long> getFollowingsByUser(@RequestParam Long id) {
+        return ResponseEntity.ok((long) followService.getFollowedsByUser(id).size());
     }
 
     @DeleteMapping("/{id}")

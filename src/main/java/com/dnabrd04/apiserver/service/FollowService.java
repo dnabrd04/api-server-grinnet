@@ -24,4 +24,8 @@ public class FollowService {
     public List<Follow> getFollowsByUser(Long id) {
         return followRepository.getFollowersByIdUser(id);
     }
+
+    public List<Follow> getFollowedsByUser(Long id) {
+        return followRepository.getFollowedsByIdUser(id);
+    }
 }
