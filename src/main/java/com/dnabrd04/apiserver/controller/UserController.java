@@ -25,6 +25,11 @@ public class UserController {
         return ResponseEntity.ok(userService.existsUsername(username));
     }
 
+    @PutMapping("/token/{firebaseId}")
+    public ResponseEntity<User> updateToken(@PathVariable String firebaseId, @RequestBody String token) {
+        return ResponseEntity.ok(userService.updateToken(firebaseId, token));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUser(id));

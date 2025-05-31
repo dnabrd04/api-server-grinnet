@@ -4,6 +4,7 @@ import com.dnabrd04.apiserver.model.User;
 import com.dnabrd04.apiserver.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -66,12 +67,26 @@ public class UserService {
     }
 
     /**
-     * Receives an id and delete the user with this id.
+     * Receives an user and update the user.
      *
      * @param user to update
      * @return the user's new values
      */
     public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+
+    /**
+     * Receives an idUser and a new token and update
+     * the user with the new value for the token.
+     *
+     * @param firebaseId of user to update
+     * @param token new value
+     * @return the user's new values
+     */
+    public User updateToken(String firebaseId, String token) {
+        User user = userRepository.findByFirebaseId(firebaseId).orElseThrow();
+        user.setTokenPush(token);
         return userRepository.save(user);
     }
 

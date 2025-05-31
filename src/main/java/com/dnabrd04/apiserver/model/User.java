@@ -35,6 +35,10 @@ public class User {
     @Column(name = "firebase_id")
     private String firebaseId;
 
+    // The token needed for the notification push to work
+    @Column(name = "tokenPush")
+    private String tokenPush;
+
     // The name of the user
     @Column
     private String name;
@@ -118,6 +122,14 @@ public class User {
 
     public void setFirebaseId(String firebaseId) {
         this.firebaseId = firebaseId;
+    }
+
+    public String getTokenPush() {
+        return tokenPush;
+    }
+
+    public void setTokenPush(String tokenPush) {
+        this.tokenPush = tokenPush;
     }
 
     public String getName() {
