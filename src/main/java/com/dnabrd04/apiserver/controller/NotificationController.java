@@ -3,35 +3,37 @@ package com.dnabrd04.apiserver.controller;
 import com.dnabrd04.apiserver.notification.NotificationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.Map;
 
+@RestController
+@RequestMapping("/sendFollowNotification")
 public class NotificationController extends HttpServlet {
 
     @Autowired
     private NotificationService notificationService;
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, String> payload = mapper.readValue(req.getInputStream(), Map.class);
-
-        String token = payload.get("token");
+    @PostMapping
+    public ResponseEntity<String> sendNotification(@RequestBody Map<String, String> payload) {
+        String targetUserId = payload.get("token");
         String followerUserId = payload.get("followerUserId");
 
-        if (token == null || followerUserId == null) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            resp.getWriter().write("Missing required fields");
-            return;
+        if (targetUserId == null || followerUserId == null) {
+            return ResponseEntity.badRequest().body("Missing required fields");
         }
 
-        notificationService.sendFollowNotification(token, Long.parseLong(followerUserId));
-        resp.setStatus(HttpServletResponse.SC_OK);
-        resp.getWriter().write("Notificación enviada correctamente");
+        notificationService.sendFollowNotification(targetUserId, Long.parseLong(followerUserId));
+        return ResponseEntity.ok("Notificación enviada correctamente");
     }
 }

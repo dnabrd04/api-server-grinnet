@@ -20,7 +20,7 @@ public class Follow {
     private User followed;
 
     @Column
-    private Date followDate;
+    private String followDate;
 
     /**
      * Empty constructor required for hibernate
@@ -29,14 +29,14 @@ public class Follow {
 
     }
 
-    public Follow(Long idFollow, User follower, User followed, Date follow_date) {
+    public Follow(Long idFollow, User follower, User followed, String follow_date) {
         this.idFollow = idFollow;
         this.follower = follower;
         this.followed = followed;
         this.followDate = follow_date;
     }
 
-    public Follow(User follower, User followed, Date follow_date) {
+    public Follow(User follower, User followed, String follow_date) {
         this.follower = follower;
         this.followed = followed;
         this.followDate = follow_date;
@@ -66,11 +66,11 @@ public class Follow {
         this.followed = followed;
     }
 
-    public Date getFollow_date() {
+    public String getFollow_date() {
         return followDate;
     }
 
-    public void setFollow_date(Date follow_date) {
+    public void setFollow_date(String follow_date) {
         this.followDate = follow_date;
     }
 }
