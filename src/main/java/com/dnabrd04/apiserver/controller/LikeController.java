@@ -16,9 +16,9 @@ public class LikeController {
     private LikeService likeService;
 
     @PostMapping
-    public ResponseEntity<Like> createLike(@RequestBody Like like) {
-        System.out.println(like.getPost());
-        return ResponseEntity.ok(likeService.createLike(like));
+    public ResponseEntity<Void> createLike(@RequestBody Like like) {
+        likeService.createLike(like);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{post_id}")
@@ -27,8 +27,8 @@ public class LikeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long userId, @RequestParam Long postId) {
-        likeService.deleteLike(userId, postId);
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id, @RequestParam Long postId) {
+        likeService.deleteLike(id, postId);
         return ResponseEntity.noContent().build();
     }
 }

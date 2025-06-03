@@ -50,29 +50,8 @@ public class PostDTO {
         this.text = text;
     }
 
-    public PostDTO(Long idPost, PostDTO postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount, boolean isLiked, List<Resource> resources) {
-        this.idPost = idPost;
-        this.postRelated = postRelated;
-        this.text = text;
-        this.privacity = privacity;
-        this.creationDate = creationDate;
-        this.user = user;
-        this.likeCount = likeCount;
-        this.commentCount = commentCount;
-        this.isLiked = isLiked;
-        this.resources = resources;
-    }
+    public PostDTO() {
 
-    public PostDTO(PostDTO postRelated, String text, String privacity, Date creationDate, User user, Long likeCount, Long commentCount, boolean isLiked, List<Resource> resources) {
-        this.postRelated = postRelated;
-        this.text = text;
-        this.privacity = privacity;
-        this.creationDate = creationDate;
-        this.user = user;
-        this.likeCount = likeCount;
-        this.commentCount = commentCount;
-        this.isLiked = isLiked;
-        this.resources = resources;
     }
 
     public Long getIdPost() {

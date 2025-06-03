@@ -35,18 +35,8 @@ public class PostService {
      * @param id required to search the post.
      * @return the post.
      */
-    /*public PostDTO getPostDTO(Long id, String currentUser) {
+    public PostDTO getPostDTO(Long id, String currentUser) {
         return postRepository.findPostByIdWithLikeStatus(id, currentUser);
-    }*/
-
-    /**
-     * Get on post by the id.
-     *
-     * @param id required to search the post.
-     * @return the post.
-     */
-    public Post getPost(Long id) {
-        return postRepository.getReferenceById(id);
     }
 
     /**

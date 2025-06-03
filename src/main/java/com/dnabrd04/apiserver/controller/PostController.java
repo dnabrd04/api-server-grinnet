@@ -2,6 +2,7 @@ package com.dnabrd04.apiserver.controller;
 
 
 import com.dnabrd04.apiserver.dto.PostDTO;
+import com.dnabrd04.apiserver.dto.PostDTORequest;
 import com.dnabrd04.apiserver.dto.UserIdRequest;
 import com.dnabrd04.apiserver.model.Post;
 import com.dnabrd04.apiserver.service.PostService;
@@ -28,11 +29,11 @@ public class PostController {
         return ResponseEntity.ok(postService.getPosts(request.getFirebaseUserId()));
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<PostDTO> getPost(@PathVariable Long id) {
-//        return ResponseEntity.ok(postService.getPostDTO(id));
-//    }
-//
+    @PostMapping("/one-with-likes")
+    public ResponseEntity<PostDTO> getPost(@RequestBody PostDTORequest request) {
+        return ResponseEntity.ok(postService.getPostDTO(request.getIdPost(), request.getFirebaseUserId()));
+    }
+
 //    @GetMapping("/user/{id}")
 //    public ResponseEntity<List<PostDTO>> getPostsByUser(@PathVariable Long id) {
 //        return ResponseEntity.ok(postService.getPostsByUser(id));
@@ -50,7 +51,7 @@ public class PostController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}")
+    /*@PutMapping("/{id}")
     public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post post) {
         Post existingPost = postService.getPost(id);
 
@@ -62,5 +63,5 @@ public class PostController {
         existingPost.setPrivacity(post.getPrivacity());
 
         return ResponseEntity.ok(postService.updatePost(existingPost));
-    }
+    }*/
 }
