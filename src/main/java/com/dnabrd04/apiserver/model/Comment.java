@@ -1,5 +1,8 @@
 package com.dnabrd04.apiserver.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -23,6 +26,7 @@ public class Comment {
     private User user;
 
     @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JoinColumn(name = "id_post", nullable = false, foreignKey = @ForeignKey(name = "FK_COMMENT_POST"))
     private Post post;
 
@@ -30,6 +34,7 @@ public class Comment {
     private String text;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "comment_related", foreignKey = @ForeignKey(name = "FK_COMMENT_COMMENT"))
     private Comment comment;
 

@@ -1,5 +1,6 @@
 package com.dnabrd04.apiserver.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -49,6 +50,7 @@ public class User {
 
     // The comments related that have been maked by this user
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Comment> comments;
 
     // The posts related that have been maked by this user
