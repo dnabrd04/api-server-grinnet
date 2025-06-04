@@ -11,10 +11,9 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-    /*@Query("""
-            SELECT new com.dnabrd04.apiserver.dto.PostDTO(p.idPost, pr, p.text, p.privacity, p.creation_date, u, COUNT(l.post.idPost), COUNT(c),
-                (SELECT COUNT(ul) > 0 FROM Like ul WHERE ul.post.idPost = p.idPost AND ul.user.firebaseId = :firebaseUserId),
-                r
+    @Query("""
+            SELECT new com.dnabrd04.apiserver.dto.PostDTO(p, pr,
+                (SELECT COUNT(ul) > 0 FROM Like ul WHERE ul.post.idPost = p.idPost AND ul.user.firebaseId = :firebaseUserId)
             )
             FROM Post p
             LEFT JOIN p.likes l
@@ -23,9 +22,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             LEFT JOIN p.post pr
             LEFT JOIN p.resources r
             WHERE u.idUser = :idUser
-            GROUP BY p.idPost, u, p.text, p.privacity, p.creation_date, r
+            GROUP BY p.idPost, u, p.post, p.text, p.privacity, p.creation_date, r
             """)
-    List<PostDTO> findByUserIdWithLikeStatus(@Param("idUser") Long idUser, @Param("firebaseUserId") String currentUser);*/
+    List<PostDTO> findByUserIdWithLikeStatus(@Param("idUser") Long idUser, @Param("firebaseUserId") String currentUser);
 
     @Query("""
             SELECT new com.dnabrd04.apiserver.dto.PostDTO(p, pr,

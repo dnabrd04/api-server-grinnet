@@ -21,18 +21,26 @@ public class FollowController {
     }
 
     @GetMapping("/{id}/followers")
-    public ResponseEntity<Long> getFollowersByUser(@RequestParam Long id) {
-        return ResponseEntity.ok((long) followService.getFollowsByUser(id).size());
+    public ResponseEntity<String> getFollowersByUser(@PathVariable Long id) {
+        return ResponseEntity.ok("" + followService.getFollowsByUser(id).size());
     }
 
     @GetMapping("/{id}/following")
-    public ResponseEntity<Long> getFollowingsByUser(@RequestParam Long id) {
-        return ResponseEntity.ok((long) followService.getFollowedsByUser(id).size());
+    public ResponseEntity<String> getFollowingsByUser(@PathVariable Long id) {
+        return ResponseEntity.ok("" + followService.getFollowedsByUser(id).size());
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFollow(@RequestParam Long id) {
-        followService.deleteFollow(id);
+    @GetMapping("/check")
+    public ResponseEntity<Boolean> checkIfUserFollows(@RequestParam Long idFollowed, @RequestParam Long idFollower) {
+        return ResponseEntity.ok(followService.checkIfUserFollows(idFollowed, idFollower));
+    }
+
+    @DeleteMapping("/unfollow")
+    public ResponseEntity<Void> unfollowUser(
+            @RequestParam Long followerId,
+            @RequestParam Long followedId
+    ) {
+        followService.unfollow(followerId, followedId);
         return ResponseEntity.noContent().build();
     }
 }

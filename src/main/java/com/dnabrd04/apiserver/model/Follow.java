@@ -4,30 +4,30 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity
-public class Follow {
+    @Entity
+    public class Follow {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idFollow;
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        private Long idFollow;
 
-    @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_FOLLOW_USER_FOLLOWER"), nullable = false)
-    private User follower;
+        @ManyToOne
+        @JoinColumn(foreignKey = @ForeignKey(name = "FK_FOLLOW_USER_FOLLOWER"), nullable = false)
+        private User follower;
 
-    @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_FOLLOW_USER_FOLLOWED"), nullable = false)
-    private User followed;
+        @ManyToOne
+        @JoinColumn(foreignKey = @ForeignKey(name = "FK_FOLLOW_USER_FOLLOWED"), nullable = false)
+        private User followed;
 
-    @Column
-    private String followDate;
+        @Column
+        private String followDate;
 
-    /**
-     * Empty constructor required for hibernate
-     */
-    public Follow() {
+        /**
+         * Empty constructor required for hibernate
+         */
+        public Follow() {
 
-    }
+        }
 
     public Follow(Long idFollow, User follower, User followed, String follow_date) {
         this.idFollow = idFollow;

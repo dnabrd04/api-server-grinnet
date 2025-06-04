@@ -17,8 +17,8 @@ public class FollowService {
         return followRepository.save(follow);
     }
 
-    public void deleteFollow(Long id) {
-        followRepository.deleteById(id);
+    public void unfollow(Long followerId, Long followedId) {
+        followRepository.deleteFollow(followerId, followedId);
     }
 
     public List<Follow> getFollowsByUser(Long id) {
@@ -27,5 +27,9 @@ public class FollowService {
 
     public List<Follow> getFollowedsByUser(Long id) {
         return followRepository.getFollowedsByIdUser(id);
+    }
+
+    public boolean checkIfUserFollows(Long idFollowed, Long idFollower) {
+        return !followRepository.checkUserFollows(idFollowed, idFollower).isEmpty();
     }
 }

@@ -34,10 +34,11 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostDTO(request.getIdPost(), request.getFirebaseUserId()));
     }
 
-//    @GetMapping("/user/{id}")
-//    public ResponseEntity<List<PostDTO>> getPostsByUser(@PathVariable Long id) {
-//        return ResponseEntity.ok(postService.getPostsByUser(id));
-//    }
+    @PostMapping("/user-list-with-likes")
+    public ResponseEntity<List<PostDTO>> getPostsByUser(@RequestBody PostDTORequest request) {
+        List<PostDTO> posts = postService.getPostsByUser(request.getIdUser(), request.getFirebaseUserId());
+        return ResponseEntity.ok(posts);
+    }
 
 
     @PostMapping

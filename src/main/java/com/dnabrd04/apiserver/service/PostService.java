@@ -45,9 +45,9 @@ public class PostService {
      * @param id required to search the post.
      * @return the post.
      */
-    /*public List<PostDTO> getPostsByUser(Long id, String currentUser) {
+    public List<PostDTO> getPostsByUser(Long id, String currentUser) {
         return postRepository.findByUserIdWithLikeStatus(id, currentUser);
-    }*/
+    }
 
     /**
      * Create the post with all the information.
