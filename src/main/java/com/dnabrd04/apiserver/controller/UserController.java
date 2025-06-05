@@ -59,6 +59,19 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("image/{id}")
+    public ResponseEntity<User> updateUserImage(@PathVariable Long id, @RequestBody String userImage) {
+        User existingUser = userService.getUser(id);
+
+        if( existingUser == null ) {
+            return ResponseEntity.noContent().build();
+        }
+
+        existingUser.setImage(userImage);
+
+        return ResponseEntity.ok(userService.updateUser(existingUser));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
         User existingUser = userService.getUser(id);
