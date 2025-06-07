@@ -30,6 +30,17 @@ public class PostService {
     }
 
     /**
+     * Get all posts in the database where the user is the user you follow.
+     *
+     * @param id of the user required to search the post.
+     * @param currentUser required to search the post.
+     * @return a list with all the posts.
+     */
+    public List<PostDTO> getPostsDTOFollowed(Long id, String currentUser) {
+        return postRepository.findAllPostsWithLikeStatusFollowed(id, currentUser);
+    }
+
+    /**
      * Get on post by the id.
      *
      * @param id required to search the post.

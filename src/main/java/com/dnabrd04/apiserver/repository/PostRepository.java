@@ -54,4 +54,18 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             GROUP BY p.idPost, u, p.post, p.text, p.privacity, p.creation_date
             """)
     PostDTO findPostByIdWithLikeStatus(@Param("idPost") Long id, @Param("firebaseUserId") String currentUser);
+
+    @Query("""
+            SELECT new com.dnabrd04.apiserver.dto.PostDTO(p, pr,
+                (SELECT COUNT(ul) > 0 FROM Like ul WHERE ul.post.idPost = p.idPost AND ul.user.firebaseId = :firebaseUserId)
+            )
+            FROM Follow f
+            JOIN f.followed u
+            JOIN Post p ON p.user.idUser = u.idUser
+            LEFT JOIN p.user
+            LEFT JOIN p.post pr
+            WHERE f.follower.idUser = :idUser
+            GROUP BY p.idPost, p.user, p.post, p.text, p.privacity, p.creation_date
+        """)
+    List<PostDTO> findAllPostsWithLikeStatusFollowed(@Param("idUser") Long idUser, @Param("firebaseUserId") String firebaseUserId);
 }

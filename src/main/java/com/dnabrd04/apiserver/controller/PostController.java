@@ -40,6 +40,12 @@ public class PostController {
         return ResponseEntity.ok(posts);
     }
 
+    @PostMapping("/posts-followed")
+    public ResponseEntity<List<PostDTO>> getPostsFollowed(@RequestBody UserIdRequest request) {
+        List<PostDTO> posts = postService.getPostsDTOFollowed(request.getUserId(), request.getFirebaseUserId());
+        return ResponseEntity.ok(posts);
+    }
+
 
     @PostMapping
     public ResponseEntity<Post> createPost(@RequestBody Post post) {
