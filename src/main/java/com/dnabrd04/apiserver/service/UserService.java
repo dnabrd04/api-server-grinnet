@@ -51,6 +51,16 @@ public class UserService {
     }
 
     /**
+     * Receives a username and gets the User with this username if exists.
+     *
+     * @param username to search on the database
+     * @return the user with match the id on the database.
+     */
+    public Optional<User> getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    /**
      * Gets all the Users
      *
      * @return the user with match the id on the database.
